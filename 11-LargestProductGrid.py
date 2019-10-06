@@ -32,24 +32,25 @@ What is the greatest product of four adjacent numbers in the same direction (up,
 def largestProduct(grid, numbers):
 
   maxValue = -float('inf')
-  #rowArr, colArr, digArr = grid, grid, grid
-  rowArr = [[1] * len(grid)] * len(grid)
-  colArr = [[1] * len(grid)] * len(grid)
-  digArr = [[1] * len(grid)] * len(grid)
+
+  for row in range(len(grid)): 
+    for col in range(len(grid)):
+      rowProd, colProd, digProd1, digProd2 = 1, 1, 1, 1
+
+      for k in range(0, numbers):
+        if col >= k:
+          rowProd *= grid[row][col-k]
+        if row >= k:
+          colProd *= grid[row-k][col]
+        if row >= k and col >= k:
+          digProd1 *= grid[row-k][col-k]
+        if row-k >= 0 and col+k < len(grid):
+          digProd2 *= grid[row-k][col+k]
+      maxValue =max(rowProd,colProd,digProd1, digProd2, maxValue)
+
+  print(maxValue)
+
   
-  for row in range(10): 
-    for col in range(numbers - 1,10):
-      rowArr[row][col] = grid[row][col]
-      print("This is current row,col", row, col)
-      for k in range(1, numbers):
-        rowArr[row][col] *= grid[row][col-k]
-      print(rowArr[row][col])
-  print(rowArr[0][4])
-  print(rowArr[1][4])
-  print(rowArr[2][4])
-  print(grid[2][4])
-  print(grid[1][4])
-  print(grid[0][4])
 numbers = 4
 grid = [[8,2,22,97,38,15,0,40,0,75,4,5,7,78,52,12,50,77,91,8],\
       [49,49,99,40,17,81,18,57,60,87,17,40,98,43,69,48,4,56,62,0],\
