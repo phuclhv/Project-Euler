@@ -23,7 +23,6 @@ def largestProduct(value, numDigit):
       fillArray(idx+1, idx+1 + numDigit)
     else:
       currNum =  int(value[idx])
-      firstNum = int(valueArr[0])
       currValue = 1
       for j in range(idx,idx-numDigit,-1):
         currValue *= int(value[j])
