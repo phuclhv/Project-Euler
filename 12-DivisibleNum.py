@@ -34,7 +34,6 @@ def numMoreDivisor(maxNumDivisor):
       divisor += 1
     return numDivisor
   
-  #print(checkDivisor(10))
   while checkDivisor(sumTri) <= maxNumDivisor:
     sumTri += curTri
     curTri += 1
