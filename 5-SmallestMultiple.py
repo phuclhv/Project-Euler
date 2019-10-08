@@ -4,11 +4,9 @@ def smallestMultiples(value):
   primeFactor = {}
 
   def checkPrime(num):
-    for i in range(len(primeArr)):
-      if num % primeArr[i] == 0:
+    for pastPrime in primeArr:
+      if (num % pastPrime == 0):
         return False
-      if primeArr[i] >= math.sqrt(num):
-        return True
     return True
   
   def brokenToPrimeFactor(num):
@@ -29,7 +27,7 @@ def smallestMultiples(value):
         primeFactor[key] = value
       else:
         primeFactor[key] = max(value, primeFactor[key])
-      
+  
   for i in range(2,value):
       if checkPrime(i):
         primeArr.append(i)
@@ -40,5 +38,6 @@ def smallestMultiples(value):
   for value,occurence in primeFactor.items():
     res = res * (value**occurence)
   return res
+
 
 print(smallestMultiples(20))

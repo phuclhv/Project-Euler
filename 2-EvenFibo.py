@@ -62,7 +62,7 @@ def sumFiboMathEven(limit):
 
 def averageTimeTaken(method, target):
   sumTimeTaken = 0
-  for i in range(TEST_CYCLES):
+  for _ in range(TEST_CYCLES):
     start = time.process_time()
     method(target)
     sumTimeTaken += time.process_time() - start
