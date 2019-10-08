@@ -19,35 +19,25 @@ What is the value of the first triangle number to have over five hundred divisor
 '''
 import math
 def numMoreDivisor(maxNumDivisor):
-    # The number of divisor of this currNum will be (4+1) * (4+1) * (4+1) * (1+1) * (1+1) = 500
-  currNum  = 2**4 * 3**4 * 5**4 * 7 * 11
+  curTri = 3
+  sumTri = 3
 
-  # Use quadratic function formula for this function x^2 + x - num = 0
-  def nextTriangle(num):
-    x = int(math.sqrt(2*num))
-    if 0.5*x*(x+1) == num:
-      return 0
-    return x
+  def checkDivisor(num):
+    numDivisor = 2
+    limitFactor = math.sqrt(num)
+    divisor = 2
+    while divisor <= limitFactor:
+      if (num % divisor == 0):
+        numDivisor += 1
+        if divisor != num/divisor:
+          numDivisor += 1
+      divisor += 1
+    return numDivisor
+  
+  #print(checkDivisor(10))
+  while checkDivisor(sumTri) <= maxNumDivisor:
+    sumTri += curTri
+    curTri += 1
+  print(sumTri)
 
-  def numDivisors(num):
-    limit = int(math.sqrt(num))
-    divisors_list = []
-    for i in range(1, limit+1, 1):
-        if num % i == 0:
-            divisors_list.append(i)
-            if i != num/i:
-                divisors_list.append(num/i)
-    return len(divisors_list)
-
-  while (nextTriangle(currNum) == 0):
-    currNum +=1
-
-  currTriNum = nextTriangle(currNum)
-  print(currNum, currTriNum)
-  while numDivisors(currNum) <= maxNumDivisor:
-    currNum += currTriNum
-    currTriNum +=1
-  print(currNum, numDivisors(currNum))
-  return currNum
-        
-print(numMoreDivisor(500))
+numMoreDivisor(500)
