@@ -1,4 +1,5 @@
 '''
+https://www.projecteuler.net/problem=1
 If we list all the natural numbers below 10 that are multiples of 3 or 5, we get 3, 5, 6 and 9. The sum of these multiples is 23.
 
 Find the sum of all the multiples of 3 or 5 below 1000.
@@ -10,55 +11,57 @@ Solutions:
 First method: Go through every number <  target, check if it divisible by 3 or 5 then add it
 
 Second method: Find all divisible by 3 that is less target, do the same with 5, then 15, 
-The result will be sumDivisibleBy(target,3) + sumDivisibleBy(target,5) - sumDivisibleBy(target,15)
+The result will be sum_divisible_by(target,3) + sum_divisible_by(target,5) - sum_divisible_by(target,15)
 '''
 
 import time
 TEST_CYCLES = 10
-def sumMul(maxNum):
+def sum_multiples(max_num):
   res = 0
-  for num in range(maxNum):
+  for num in range(max_num):
     if num % 3 == 0 or num % 5 == 0:
       res += num
   return res
 
-def sumDivisibleBy(maxNum, divisor):
-  res, currNum = 0, divisor
-  while currNum <= maxNum:
-    res += currNum
-    currNum += divisor
+def sum_divisible_by(max_num, divisor):
+  res, curr_num = 0, divisor
+  while curr_num <= max_num:
+    res += curr_num
+    curr_num += divisor
   return res
 
-def averageTimeTaken1st(target):
-  sumTimeTaken = 0
+def average_time_taken_1st(target):
+  sum_time_taken = 0
   for _ in range(TEST_CYCLES):
     start = time.process_time()
-    sumMul(target)
-    sumTimeTaken += time.process_time() - start
-  return sumTimeTaken / float(TEST_CYCLES)
+    sum_multiples(target)
+    sum_time_taken += time.process_time() - start
+  return sum_time_taken / float(TEST_CYCLES)
 
-def averageTimeTaken2st(target):
-  sumTimeTaken = 0
+def average_time_taken_2nd(target):
+  sum_time_taken = 0
   for _ in range(TEST_CYCLES):
     start = time.process_time()
-    tmp = sumDivisibleBy(target,3) + sumDivisibleBy(target,5) - sumDivisibleBy(target,15)
-    sumTimeTaken += time.process_time() - start
-  return sumTimeTaken / float(TEST_CYCLES)
+    sum_divisible_by(target,3)
+    sum_divisible_by(target,5)
+    sum_divisible_by(target,15)
+    sum_time_taken += time.process_time() - start
+  return sum_time_taken / float(TEST_CYCLES)
 
-def overalTest(target):
+def overall_test(target):
   print("Testing with target = ", target)
   print("First method")
-  print("Value: ", sumMul(target))
-  print("Average time Taken: ", averageTimeTaken1st(target))
+  print("Value: ", sum_multiples(target))
+  print("Average time Taken: ", average_time_taken_1st(target))
   print("Second method")
-  print("Value: ", sumDivisibleBy(target,3) + sumDivisibleBy(target,5) - sumDivisibleBy(target,15))
-  print("Average time Taken: ", averageTimeTaken1st(target))
+  print("Value: ", sum_divisible_by(target,3) + sum_divisible_by(target,5) - sum_divisible_by(target,15))
+  print("Average time Taken: ", average_time_taken_1st(target))
   print("\n")
 
 
-overalTest(1000)
-overalTest(100000)
-overalTest(10000000)
+overall_test(1000)
+overall_test(100000)
+overall_test(10000000)
 
 # Testing with target =  1000
 # First method
