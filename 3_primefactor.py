@@ -1,19 +1,22 @@
-
 '''
+Largest prime factor
+https://www.projecteuler.net/problem=3
 The prime factors of 13195 are 5, 7, 13 and 29.
 
 What is the largest prime factor of the number 600851475143 ?
 '''
 
 import math
-def primeFactor(value):
-  primeArr = [2]
+from test import average_time_taken
+
+def prime_factor(value):
+  primes = [2]
   while (value % 2 == 0):
     value = value / 2
-    lastFactor = 2
+    last_factor = 2
 
   def checkPrime(num):
-    for pastPrime in primeArr:
+    for pastPrime in primes:
       if (num % pastPrime == 0):
         return False
     return True
@@ -23,12 +26,16 @@ def primeFactor(value):
   
   while value > 1 and factor < limitFactor:
     if checkPrime(factor):
-      primeArr.append(factor)
+      primes.append(factor)
       while (value % factor == 0):
         value = value // factor
-        lastFactor = factor
+        last_factor = factor
     factor += 2
-  return lastFactor
+  return last_factor
 
-print(primeFactor(600851475143))
+limit = 600851475143
+average_time_taken(prime_factor,limit)
+
+#Average time taken for 600851475143 is 0.0296875s. Result: 6857
+
       
