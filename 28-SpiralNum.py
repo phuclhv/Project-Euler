@@ -17,8 +17,8 @@ What is the sum of the numbers on the diagonals in a 1001 by 1001 spiral formed 
 1st approach:
 Use a little math trick behind it.
 The sum would allways be 
-1 + 3 + 5 + 7 + 9 + 13 + 17 + 21 + 25 +....
-         2 range          4 range
+1 +    3 + 5 + 7 + 9    +    13 + 17 + 21 + 25  +....
+           2 range               4 range
 Every 4 addition, the range between element will increase by 2
 As size increase by 2, we add 4 more element in to the sum
 
