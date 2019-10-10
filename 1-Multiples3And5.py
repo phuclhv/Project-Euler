@@ -31,7 +31,7 @@ def sumDivisibleBy(maxNum, divisor):
 
 def averageTimeTaken1st(target):
   sumTimeTaken = 0
-  for i in range(TEST_CYCLES):
+  for _ in range(TEST_CYCLES):
     start = time.process_time()
     sumMul(target)
     sumTimeTaken += time.process_time() - start
@@ -39,7 +39,7 @@ def averageTimeTaken1st(target):
 
 def averageTimeTaken2st(target):
   sumTimeTaken = 0
-  for i in range(TEST_CYCLES):
+  for _ in range(TEST_CYCLES):
     start = time.process_time()
     tmp = sumDivisibleBy(target,3) + sumDivisibleBy(target,5) - sumDivisibleBy(target,15)
     sumTimeTaken += time.process_time() - start
