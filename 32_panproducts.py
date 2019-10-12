@@ -26,10 +26,13 @@ def sum_pan_product():
     str_a, str_b,str_c = str(a),str(b),str(c)
     if len(str_a) + len(str_b) + len(str_c) != 9:
       return False
-    product_sorted = int(''.join(sorted(str_a + str_b + str_c)))
-    if product_sorted == 123456789:
-      return True
-    return  False
+    product_str_sorted = str_a + str_b + str_c
+    unique_digit = set()
+    for char in product_str_sorted:
+      if char == '0' or char in unique_digit:
+        return False
+      unique_digit.add(char)
+    return  True
   
   res = 0
 
@@ -50,4 +53,4 @@ def sum_pan_product():
   return res
 
 average_time_taken(sum_pan_product)
-#Average time taken is 0.1078125s. Result: 45228
+#Average time taken is 0.0921875s. Result: 45228
