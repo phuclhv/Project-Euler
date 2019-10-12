@@ -13,6 +13,10 @@ HINT: Some products can be obtained in more than one way so be sure to only incl
 Assume that a < b and a*b = product is pandigital
 We have 2 * 5000 = 10000 > 9 total digits and 100 * 100 = 10000 > 9 total digits
 Thus a and b would be limit in range (2,100) and (100,5000) respectively with a < b
+
+More finetune would be when we relize there's only 2 case:
+Case 1: a has 1 digit, b has 4 digit, c has 4 digit
+Case 2: a has 2 digit, b has 3 digit, c has 4 digit
 '''
 from test import average_time_taken
 def sum_pan_product():
@@ -22,22 +26,28 @@ def sum_pan_product():
     str_a, str_b,str_c = str(a),str(b),str(c)
     if len(str_a) + len(str_b) + len(str_c) != 9:
       return False
-    product_str_sorted = ''.join(sorted(str_a + str_b + str_c))
-    if product_str_sorted == "123456789":
+    product_sorted = int(''.join(sorted(str_a + str_b + str_c)))
+    if product_sorted == 123456789:
       return True
     return  False
   
   res = 0
+
+  # Case 1
   pan_set = set()
-  for i in range(2,1000):
-    for j in range(100,5000):
-      if j < i:
-        continue
+  for i in range(2,10):
+    for j in range(1000,5000):
       if is_pan(i,j) and i*j not in pan_set:
         pan_set.add(i*j)
         res += (i*j)
   
+  # Case 2
+  for i in range(10,100):
+    for j in range(100,1000):
+      if is_pan(i,j) and i*j not in pan_set:
+        pan_set.add(i*j)
+        res += (i*j)
   return res
 
 average_time_taken(sum_pan_product)
-#Average time taken for None is 3.6359375s. Result: 45228
+#Average time taken is 0.1078125s. Result: 45228
