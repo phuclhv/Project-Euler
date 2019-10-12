@@ -18,8 +18,11 @@ from test import average_time_taken
 def sum_pan_product():
 
   def is_pan(a,b):
-    product = a * b
-    product_str_sorted = ''.join(sorted(str(a) + str(b) + str(product)))
+    c = a * b
+    str_a, str_b,str_c = str(a),str(b),str(c)
+    if len(str_a) + len(str_b) + len(str_c) != 9:
+      return False
+    product_str_sorted = ''.join(sorted(str_a + str_b + str_c))
     if product_str_sorted == "123456789":
       return True
     return  False
@@ -37,4 +40,4 @@ def sum_pan_product():
   return res
 
 average_time_taken(sum_pan_product)
-#Average time taken is 9.35s. Result: 45228
+#Average time taken for None is 3.6359375s. Result: 45228
