@@ -10,20 +10,25 @@ and containing two digits in the numerator and denominator.
 
 If the product of these four fractions is given in its lowest common terms, find the value of the denominator.
 '''
+import math
 def denominator():
-
   def simplify_fraction(numerator, denominator):
     org_frac = numerator / denominator
-    frac_comb1, frac_comb2 = 1,1
-    if (denominator % 10 != 0):
-      frac_comb1 = (numerator // 10) / (denominator % 10)
-    if (denominator // 10 != 0):
-      frac_comb2 = (numerator % 10) / (denominator // 10)
-    return org_frac == frac_comb1 or org_frac == frac_comb2
-  
+    a, b, c, d = numerator//10, numerator %10, denominator // 10, denominator % 10
+    if (c!= 0 and a == d and b/c == org_frac) or (d!=0 and b==c and a/d == org_frac):
+      return True
+    return False
+  product_num = 1
+  product_dem = 1
   for i in range(1,99):
     for j in range (i+1,99):
       if simplify_fraction(i,j):
-        print(i,j)
+        product_num *= i
+        product_dem *= j
+  
+  for i in range(min(product_num, product_dem),1,-1):
+    if product_dem % i == 0  and product_num % i == 0:
+      print(product_dem // i)
+      return
 
 denominator()
