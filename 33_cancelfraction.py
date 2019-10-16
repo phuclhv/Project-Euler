@@ -28,7 +28,6 @@ def denominator():
   
   for i in range(min(product_num, product_dem),1,-1):
     if product_dem % i == 0  and product_num % i == 0:
-      print(product_dem // i)
-      return
+      return(product_dem // i)
 
-denominator()
+print(denominator())
