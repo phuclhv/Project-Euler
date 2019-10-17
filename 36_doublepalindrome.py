@@ -11,7 +11,9 @@ from test import average_time_taken
 
 def sum_double_palindrome(limit):
   sum_double = 0
-  for i in range(limit, 0, -1):
+  if limit % 2 == 0:
+    limit -= 1
+  for i in range(limit, 0, -2):
     if str(i) == str(i)[::-1]:
       binary_form = bin(i)[2:]
       if binary_form == binary_form[::-1]:
@@ -20,4 +22,4 @@ def sum_double_palindrome(limit):
   
 limit = 1000000
 average_time_taken(sum_double_palindrome,limit)
-# Average time taken for 1000000 is 0.384375s. Result: 872187
+# Average time taken for 1000000 is 0.1921875s. Result: 872187
