@@ -10,6 +10,7 @@ Find the largest palindrome made from the product of two 3-digit numbers.
 Brute force from top down
 '''
 from test import average_time_taken
+
 def largest_palindrome(limit):
   max_palindrome = 0
   for i in range(limit, 100, -1):
