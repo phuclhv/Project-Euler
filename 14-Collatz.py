@@ -12,28 +12,40 @@ It can be seen that this sequence (starting at 13 and finishing at 1) contains 1
 Which starting number, under one million, produces the longest chain?
 '''
 
-def startCollatzNum(limit):
-  collatzDict = {1:1}
+def start_collatz_num(limit):
+  # save all the known collatz value so far
+  # key: number
+  # value: collatz number of the key
+  collatz_chains = {1:1}
+
   maxChain = 0
   maxChainValue = -1
+
   for i in range(limit+1, 1, -1):
-    currSeq = []
+    # store the sequence starting with i
+    curr_seq = []
     value = i
-    while value not in collatzDict:
-      currSeq.append(value)
+    # if it is not stored all ready, we must initiate the chain
+    while value not in collatz_chains:
+      curr_seq.append(value)
       if (value % 2 == 0):
         value = value // 2
       else:
         value = value * 3 + 1
-    for i in range(len(currSeq)):
-      collatzDict[currSeq[i]] = collatzDict[value] + len(currSeq) - i
+    
+    # Put all the value in curr_seq to the collatz
+    for i in range(len(curr_seq)):
+      collatz_chains[curr_seq[i]] = collatz_chains[value] + len(curr_seq) - i
   
-  for key, value in collatzDict.items():
+  # get the max from all the value
+  for key, value in collatz_chains.items():
     if value > maxChainValue :
       maxChainValue = value
       maxChain = key
   
   print(maxChainValue, maxChain)
 
-startCollatzNum(1000000)
+start_collatz_num(13)
+start_collatz_num(9999)
+start_collatz_num(1000000)
     
